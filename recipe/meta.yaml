@@ -1,46 +1,57 @@
 {% set name = "pyvis" %}
-{% set version = "0.3.1" %}
-
+{% set version = "0.3.2" %}
 
 package:
-  name: {{ name|lower }}
-  version: {{ version }}
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pyvis-{{ version }}.tar.gz
-  sha256: aa817caac54afc9a4df38ada6f46636b842a8bd57197bb6aca5084699da04307
+  url: https://github.com/WestHealth/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: ff947e224d9825e4b0f3d6710075945c5c8d13bf60aa54e6396c996f34851a3a
 
 build:
+  skip: true  [py<=36]
   number: 0
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  script: "{{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation"
 
 requirements:
   host:
-    - python >=3.6
     - pip
+    - python
+    - wheel
+    - setuptools
   run:
-    - python >=3.6
-    - ipython >=5.3.0
+    - python
     - jinja2 >=2.9.6
-    - jsonpickle >=1.4.1
     - networkx >=1.11
+    - ipython >=5.3.0
+    - jsonpickle >=1.4.1
 
 test:
   imports:
     - pyvis
-  commands:
-    - pip check
+    - pyvis.tests
   requires:
-    - pip
+    - numpy >=1.23.1
+    - selenium >=4.4.3
+    - jsonpickle >=2.2.0
+    - networkx >=2.8.4
+    - ipython >=8.4.0
+    - Jinja2 >=3.1.2
+    - setuptools >=60.2.0
 
 about:
   home: https://github.com/WestHealth/pyvis
-  license: BSD-3-Clause
+  license: BSD
   license_family: BSD
   license_file: LICENSE_BSD.txt
-  summary: A Python network visualization library
+  summary: "A Python network graph visualization library"
+  description: |
+    The goal of Pyvis is to build a python based approach
+    to constructing and visualizing network graphs in the same space.
+  doc_url: https://pyvis.readthedocs.io/
+  dev_url: https://github.com/WestHealth/pyvis/
 
 extra:
   recipe-maintainers:
-    - ocefpaf
+    - solesnake
