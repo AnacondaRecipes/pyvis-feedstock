@@ -31,6 +31,8 @@ test:
   imports:
     - pyvis
     - pyvis.tests
+  source_files:
+    - pyvis
   requires:
     - numpy >=1.23.1
     - selenium >=4.4.3
@@ -39,6 +41,10 @@ test:
     - ipython >=8.4.0
     - Jinja2 >=3.1.2
     - setuptools >=60.2.0
+  commands:
+    # test_html requires webdriver-manager, which isn't available yet
+    - rm pyvis/tests/test_html.py
+    - python -m unittest discover pyvis.tests
 
 about:
   home: https://github.com/WestHealth/pyvis
@@ -54,4 +60,4 @@ about:
 
 extra:
   recipe-maintainers:
-    - solesnake
+    - ocefpaf
