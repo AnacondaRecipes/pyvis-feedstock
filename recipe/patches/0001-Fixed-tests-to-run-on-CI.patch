@@ -1,0 +1,38 @@
+From 2ebc24a64c1b0418927437b3ab04b015ab50a1ad Mon Sep 17 00:00:00 2001
+From: Stanislav Oles <zdreni@gmail.com>
+Date: Tue, 17 Dec 2024 16:10:55 +0200
+Subject: [PATCH] Fixed tests to run on CI
+
+---
+ pyvis/tests/test_graph.py | 2 +-
+ pyvis/tests/test_me.py    | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/pyvis/tests/test_graph.py b/pyvis/tests/test_graph.py
+index 3fb54a8..db2eb66 100644
+--- a/pyvis/tests/test_graph.py
++++ b/pyvis/tests/test_graph.py
+@@ -1,7 +1,7 @@
+ import os
+ import unittest
+ 
+-from ..network import Network
++from pyvis.network import Network
+ 
+ 
+ class NodeTestCase(unittest.TestCase):
+diff --git a/pyvis/tests/test_me.py b/pyvis/tests/test_me.py
+index f5500dd..927834a 100644
+--- a/pyvis/tests/test_me.py
++++ b/pyvis/tests/test_me.py
+@@ -1,6 +1,6 @@
+ import numpy as np
+ 
+-from ..network import Network
++from pyvis.network import Network
+ 
+ 
+ def test_canvas_size():
+-- 
+2.39.5 (Apple Git-154)
+

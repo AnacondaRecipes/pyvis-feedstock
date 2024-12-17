@@ -9,6 +9,8 @@ package:
 source:
   url: https://github.com/WestHealth/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
   sha256: ff947e224d9825e4b0f3d6710075945c5c8d13bf60aa54e6396c996f34851a3a
+  patches:
+    - patches/0001-Fixed-tests-to-run-on-CI.patch
 
 build:
   skip: true  [py<=36]
@@ -33,7 +35,7 @@ test:
     - pyvis
     - pyvis.tests
   source_files:
-    - pyvis
+    - pyvis/tests
   requires:
     - numpy >=1.23.1
     - selenium >=4.4.3
@@ -45,7 +47,8 @@ test:
   commands:
     # test_html requires webdriver-manager, which isn't available yet
     - rm pyvis/tests/test_html.py
-    - python -m unittest discover pyvis.tests
+    - cd pyvis
+    - python -m unittest discover tests
 
 about:
   home: https://github.com/WestHealth/pyvis
