@@ -1,0 +1,19 @@
+From cae38cd6b2a76ecd92e0b41ff2b35c32a1243d07 Mon Sep 17 00:00:00 2001
+From: Mohamed Sentissi <msentissi@anaconda.com>
+Date: Tue, 17 Dec 2024 16:12:28 -0500
+Subject: [PATCH] Fix version
+
+---
+ pyvis/_version.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/pyvis/_version.py b/pyvis/_version.py
+index b4f711f..47a41e4 100644
+--- a/pyvis/_version.py
++++ b/pyvis/_version.py
+@@ -1 +1 @@
+-__version__ = '0.2.0' # bump version
++__version__ = '0.3.2' # bump version
+-- 
+2.45.2
+
