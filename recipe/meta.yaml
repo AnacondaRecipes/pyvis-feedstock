@@ -11,10 +11,11 @@ source:
   sha256: ff947e224d9825e4b0f3d6710075945c5c8d13bf60aa54e6396c996f34851a3a
   patches:
     - patches/0001-Fixed-tests-to-run-on-CI.patch
+    - patches/0002-Fix-version.patch
 
 build:
   skip: true  [py<=36]
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation"
 
 requirements:
@@ -41,6 +42,8 @@ test:
     - pip
   commands:
     - pip check
+    # check that pip gets the correct version
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
     # test_html requires webdriver-manager, which isn't available yet
     - rm pyvis/tests/test_html.py
     - cd pyvis
